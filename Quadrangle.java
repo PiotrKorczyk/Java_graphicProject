@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Quadrangle {
+public class Quadrangle extends Polygon {
 
     private Point A, B, C, D;
     private static int counter = 0;
@@ -66,16 +66,16 @@ public class Quadrangle {
         this.D = D;
     }
 
-    public double calculateCircuit() {
+    public double countPerimiter() {
         double _circuit = Point.calculateDistance(A, B) + Point.calculateDistance(B, C) + Point.calculateDistance(C, D)
                 + Point.calculateDistance(D, A);
         return _circuit;
     }
 
-    public double calculateArea() {
+    public double countArea() {
         Triangle t1 = new Triangle(A, B, C);
         Triangle t2 = new Triangle(C, D, A);
-        double _area = t1.calculateArea() + t2.calculateArea();
+        double _area = t1.countArea() + t2.countArea();
         return _area;
 
     }
@@ -90,7 +90,8 @@ public class Quadrangle {
 
     @Override
     public String toString() {
-        return "Quadrangle{" + "A=" + A + ", B=" + B + ", C=" + C + ", D=" + D + '}';
+//        return "Quadrangle{" + "A=" + A + ", B=" + B + ", C=" + C + ", D=" + D + '}';
+        return super.toString();
     }
 
     public static void addToTab(Quadrangle _t, Quadrangle[] tTab) {
@@ -114,16 +115,16 @@ public class Quadrangle {
     public static Quadrangle[] createTab(int n) {
         return new Quadrangle[n];
     }
-
-    public int compareTo(Quadrangle _t) {
-        if (this.calculateArea() < _t.calculateArea()) {
-            return -1;
-        } else if (this.calculateArea() > _t.calculateArea()) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
+//
+//    public int compareTo(Quadrangle _t) {
+//        if (this.calculateArea() < _t.calculateArea()) {
+//            return -1;
+//        } else if (this.calculateArea() > _t.calculateArea()) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+//    }
 
     public void drawFigure(Graphics g){
         int [] px = {(int) A.getX(),(int) B.getX(),(int) C.getX(), (int)D.getX()}; 

@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Arrays;
 
 
-public class Triangle  {
+public class Triangle extends Polygon {
 
     private Point A, B, C;
     private static int counter = 0;
@@ -61,13 +61,13 @@ public class Triangle  {
         this.C = C;
     }
 
-    public double calculateCircuit() {
+    public double countPerimiter() {
         double _circuit = Point.calculateDistance(A, B) + Point.calculateDistance(B, C) + Point.calculateDistance(C, A);
         return _circuit;
     }
 
-    public double calculateArea() {
-        double _p = calculateCircuit() / 2;
+    public double countArea() {
+        double _p = countPerimiter() / 2;
         double _AB = Point.calculateDistance(A, B);
         double _BC = Point.calculateDistance(B, C);
         double _CA = Point.calculateDistance(C, A);
@@ -78,15 +78,15 @@ public class Triangle  {
     }
 
     public double calculateHeightAB() {
-        return (2 * calculateArea()) / Point.calculateDistance(A, B);
+        return (2 * countPerimiter()) / Point.calculateDistance(A, B);
     }
 
     public double calculateHeightBC() {
-        return (2 * calculateArea()) / Point.calculateDistance(B, C);
+        return (2 * countPerimiter()) / Point.calculateDistance(B, C);
     }
 
     public double calculateHeightCA() {
-        return (2 * calculateArea()) / Point.calculateDistance(C, A);
+        return (2 * countPerimiter()) / Point.calculateDistance(C, A);
     }
 
     public static void addToTab(Triangle _t, Triangle[] tTab) {
@@ -120,18 +120,19 @@ public class Triangle  {
     
     @Override
     public String toString() {
-        return "Triangle{" + "A=" + A + ", B=" + B + ", C=" + C + '}';
+//        return "Triangle{" + "A=" + A + ", B=" + B + ", C=" + C + '}';
+        return super.toString();
     }
 
-    public int compareTo(Triangle _t) {
-        if (this.calculateArea() < _t.calculateArea()) {
-            return -1;
-        } else if (this.calculateArea() > _t.calculateArea()) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
+//    public int compareTo(Triangle _t) {
+//        if (this.calculateArea() < _t.calculateArea()) {
+//            return -1;
+//        } else if (this.calculateArea() > _t.calculateArea()) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+//    }
 
     public void drawFigure(Graphics g){
         int [] px = {(int) A.getX(),(int) B.getX(),(int) C.getX()}; 
