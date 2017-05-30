@@ -1,51 +1,31 @@
 package java_lab_04;
 
-import javax.swing.JComponent;
+import javax.swing.*;
 import java.awt.*;
 
-public class Draw extends JComponent {
-
-    private int [] xP = new int [3];
-    private int [] yP = new int [3];
-    
-    private int numberOfVertices;
-
-//    public void setNumberOfVertices(int numberOfVertices) {
-//        this.numberOfVertices = numberOfVertices;
-//    }
-//
-//    public void setxP(int[] xP) {
-//        this.xP = xP;
-//    }
-//
-//    public void setyP(int[] yP) {
-//        this.yP = yP;
-//    }
-    
-
-    public void setXPAndYP(int[] _xP, int[] _yP, int _numberOfVertices) {
-        this.xP = new int[_numberOfVertices];
-         this.yP = new int[_numberOfVertices];
-        this.numberOfVertices = _numberOfVertices;
-        for (int i = 0; i <= _numberOfVertices - 1; i++) {
-            this.xP[i] = _xP[i];
-            this.yP[i] = _yP[i];
-            System.out.println(xP[i] + "   "+yP[i]);
-        }
-        System.out.println(numberOfVertices);
-    }
+public class Draw extends JPanel {
 
     @Override
-    public void paint(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        for(int i=0;i<=numberOfVertices-1;i++){
-            System.out.println(xP[i]+"  "+yP[i]);
+    public void paintComponent(Graphics g) {
+        Quadrangle[] arrayOfQuadrangles = { 
+            new Quadrangle(400, 100, 500, 250, 500, 300, 650,200),
+            new Quadrangle(60, 60, 260, 60, 260, 220, 60, 260),
+        };
+        
+        Triangle[] arrayOfTriangles = { 
+            new Triangle(400, 300, 400, 200, 150, 150),
+            new Triangle(80, 50, 20, 100, 160, 140)
+        };
+        
+        for(int i = 0; i < arrayOfQuadrangles.length; i++) {
+            arrayOfQuadrangles[i].drawFigure(g);
         }
-        Polygon poly = new Polygon(xP, yP, numberOfVertices);
-            g2.drawPolygon(poly);
-//        g2.drawPolygon(xP, yP, numberOfVertices);
-//        g.drawRect(150,150,200,200);
-//        g.drawPolygon(xP, yP, numberOfVertices);
+        
+        for(int i = 0; i < arrayOfTriangles.length; i++) {
+            arrayOfTriangles[i].drawFigure(g); 
+            
+
+        }
+
     }
 }
-    
